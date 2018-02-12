@@ -1,0 +1,8 @@
+# Set up PATH for engtools
+export PATH=$HOME/src/engtools/linux/bin:$HOME/engtools/common/bin:$PATH
+
+# Set up Devbox script
+alias dbx='mosh dwong-dbx'
+export DEVBOX_SCRIPTS=~/scripts
+export INIT_SCRIPT=$DEVBOX_SCRIPTS/init
+source $INIT_SCRIPT

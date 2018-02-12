@@ -1,0 +1,20 @@
+################
+## GIT
+################
+alias got=git
+alias gti=git
+alias igt=git
+alias gs='git status'
+alias go='git checkout'
+alias gb='git branch'
+
+################
+## UTILITY
+################
+alias ..='cd ..'
+alias c='clear'
+alias v='vim'
+
+# Exit commands
+alias q='exit'
+alias :q='exit'

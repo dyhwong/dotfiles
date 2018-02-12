@@ -106,3 +106,5 @@ ZSH_THEME="philips"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+source alias/main.alias
