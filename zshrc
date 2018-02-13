@@ -25,8 +25,7 @@ antigen bundle zsh-users/zsh-autosuggestions
 # Load Tmux bundle.
 antigen bundle tmux
 
-# Bind ctrl + space to autoaccept
-bindkey '^ ' autosuggest-accept                 
+antigen apply
 
 ###################
 ## VI MODE
@@ -59,6 +58,9 @@ bindkey '^w' backward-kill-word
 # Add ctrl-r: search history backward
 bindkey '^r' history-incremental-search-backward
 
+# Bind ctrl + space to autoaccept
+bindkey '^ ' autosuggest-accept
+
 # Save history
 HISTSIZE=130000
 HISTFILE=~/.zsh_history
@@ -69,7 +71,7 @@ setopt    incappendhistory
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="philips"
+# ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -107,4 +109,4 @@ ZSH_THEME="philips"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source alias/main.alias
+source ~/dotfiles/alias/main.alias
