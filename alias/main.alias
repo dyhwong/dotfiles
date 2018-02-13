@@ -18,3 +18,8 @@ alias v='vim'
 # Exit commands
 alias q='exit'
 alias :q='exit'
+
+################
+## OTHER
+################
+source ~/dotfiles/alias/dropbox.alias
