@@ -19,7 +19,6 @@ Plugin 'ervandew/supertab'              " Autocomplete
 Plugin 'tpope/vim-dispatch'             " Run commands asynchronously
 
 " Code linting
-Plugin 'w0rp/ale'
 Plugin 'sbdchd/neoformat'               " Autoformatter
 
 " File navigation
