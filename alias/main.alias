@@ -1,6 +1,7 @@
 ################
 ## GIT
 ################
+alias g=git
 alias got=git
 alias gti=git
 alias igt=git

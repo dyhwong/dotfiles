@@ -1,8 +1,11 @@
 # Set up PATH for engtools
-export PATH=$HOME/src/engtools/linux/bin:$HOME/engtools/common/bin:$PATH
+export PATH=$HOME/src/engtools/linux/bin:$HOME/src/engtools/common/bin:$PATH
 
 # Set up Devbox script
 alias dbx='mosh dwong-dbx'
 export DEVBOX_SCRIPTS=~/scripts
 export INIT_SCRIPT=$DEVBOX_SCRIPTS/init
 source $INIT_SCRIPT
+
+# Set up test stats script
+alias stats = 'bzl tool //tools:get_test_stats'
