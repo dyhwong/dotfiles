@@ -11,4 +11,4 @@ source $INIT_SCRIPT
 alias stats='bzl tool //tools:get_test_stats'
 
 # Mypy
-alias mypy-run='mypy-daemon'
+alias mypy='mypy-daemon'

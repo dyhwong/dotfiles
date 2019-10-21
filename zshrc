@@ -110,3 +110,4 @@ setopt    incappendhistory
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 source ~/dotfiles/alias/main.alias
+export PATH="/usr/local/sbin:$PATH"

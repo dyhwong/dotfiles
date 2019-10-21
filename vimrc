@@ -129,3 +129,9 @@ set shell=zsh
 
 " Set colorscheme to oceanic
 " colorscheme slate
+
+" Increase buffer size
+set viminfo='20,<1000,s1000
+
+" Remap Ctrl+g to :GFiles
+nnoremap <C-g> :GFiles<Cr>
