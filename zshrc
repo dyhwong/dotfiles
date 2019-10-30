@@ -62,8 +62,10 @@ bindkey '^r' history-incremental-search-backward
 bindkey '^ ' autosuggest-accept
 
 # Save history
-HISTSIZE=130000
-HISTFILE=~/.zsh_history
+export HISTSIZE=130000
+export HISTFILE=~/.zsh_history
+export SAVEHIST=$HISTSIZE
+setopt    hist_ignore_all_dups
 setopt    appendhistory
 setopt    sharehistory
 setopt    incappendhistory

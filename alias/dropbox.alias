@@ -8,7 +8,7 @@ export INIT_SCRIPT=$DEVBOX_SCRIPTS/init
 source $INIT_SCRIPT
 
 # Set up test stats script
-alias stats='bzl tool //tools:get_test_stats'
+alias stats='mbzl tool //tools:get_test_stats'
 
 # Mypy
 alias mypy='mypy-daemon'
