@@ -114,6 +114,6 @@ setopt    incappendhistory
 source ~/dotfiles/alias/main.alias
 export PATH="/usr/local/sbin:$PATH"
 
-source /Users/dwong/.config/broot/launcher/bash/br
+source ~/.config/broot/launcher/bash/br
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
