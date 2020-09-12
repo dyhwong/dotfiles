@@ -98,6 +98,7 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 autocmd FileType python setlocal shiftwidth=4 tabstop=4
+autocmd FileType rust setlocal ts=4 sts=4 sw=4
 
 " Configure backspace so it acts as it should
 set backspace=eol,start,indent
