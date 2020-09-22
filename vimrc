@@ -65,11 +65,15 @@ set nobackup
 set nowb
 set noswapfile
 
-"Show line numbers
+"Show relative line numbers
 set number
+set relativenumber
 
 " Enable mouse
-set mouse=a
+set mouse+=a
+
+" Disable the default Vim startup message
+set shortmess+=I
 
 " Set terminal title
 set title
@@ -83,7 +87,7 @@ let g:elite_mode=1
 " Search settings
 set incsearch       " Find the next match as we type the search
 set hlsearch        " Highlight searches by default
-set ignorecase      " Smart searching
+set ignorecase      " Make search case-insensitive when all characters in the string are lowercase
 set smartcase
 
 " Move to next displayed line instead of actual line
@@ -133,6 +137,9 @@ set shell=zsh
 
 " Increase buffer size
 set viminfo='20,<1000,s1000
+
+" Disable audible bell because it's annoying.
+set noerrorbells visualbell t_vb=
 
 " Remap Ctrl+g to :GFiles
 nnoremap <C-g> :GFiles<Cr>
