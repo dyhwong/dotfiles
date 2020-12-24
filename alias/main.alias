@@ -6,7 +6,6 @@ alias got=git
 alias gti=git
 alias igt=git
 alias gs='git status'
-alias go='git checkout'
 alias gb='git branch'
 
 ################
