@@ -35,6 +35,9 @@ Plugin 'cakebaker/scss-syntax.vim'      " SCSS
 " Git helpers
 Plugin 'tpope/vim-fugitive'             " Helpful git stuff
 
+" Rust
+Plugin 'rust-lang/rust.vim'             " Rust syntax highlighting
+
 " TODO: add more packages
 
 call vundle#end()
