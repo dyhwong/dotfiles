@@ -1,5 +1,16 @@
 # Setup Instructions
 
+## Install Brew
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+## Install tmux
+```
+brew install tmux
+```
+
+## Run the setup script
 ```
 ./setup.sh
 ```
