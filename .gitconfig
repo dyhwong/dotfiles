@@ -7,3 +7,4 @@
   unassume = update-index --no-assume-unchanged
 [pager]
   branch = false
+  diff = false
