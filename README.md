@@ -52,10 +52,9 @@ $(brew --prefix)/opt/fzf/install
 
 ## Set up Tmux
 
-### Symlink `.tmux.conf`
 ```
+tmux start-server
 ln -s dotfiles/tmux.conf ~/.tmux.conf
-source ~/.tmux.conf
 ```
 
 ## Install `tldr` and `tree`
