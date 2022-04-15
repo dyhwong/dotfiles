@@ -118,7 +118,7 @@ setopt    incappendhistory
 # Don't abort commands if glob-matching fails
 setopt NO_NOMATCH
 
-source ~/dotfiles/alias/main.alias
+source ~/dotfiles/.aliases
 export PATH="/usr/local/sbin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
