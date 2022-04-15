@@ -1,0 +1,4 @@
+[alias]
+  lv = log --graph --oneline --decorate --color --all
+  assume = update-index --assume-unchanged
+  unassume = update-index --no-assume-unchanged
