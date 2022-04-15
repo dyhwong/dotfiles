@@ -121,8 +121,6 @@ setopt NO_NOMATCH
 source ~/dotfiles/alias/main.alias
 export PATH="/usr/local/sbin:$PATH"
 
-source ~/.config/broot/launcher/bash/br
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'

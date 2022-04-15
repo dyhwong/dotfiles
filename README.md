@@ -58,10 +58,9 @@ ln -s dotfiles/tmux.conf ~/.tmux.conf
 source ~/.tmux.conf
 ```
 
-## Install `tldr`, `broot`, and `tree`
+## Install `tldr` and `tree`
 ```
 brew install tldr
-brew install broot
 brew install tree
 source ~/.zshrc
 ```
