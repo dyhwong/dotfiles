@@ -18,9 +18,6 @@ ln -s dotfiles/zshrc ~/.zshrc
 source ~/.zshrc
 ```
 
-### Customize Terminal Prompt
-In `~/.oh-my-zsh/themes/simple.zsh-theme`, update `PROMPT='%n@%m:%~%# '`
-
 ## Set up Vim
 
 ### Symlink `.vimrc`
