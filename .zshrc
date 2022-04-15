@@ -54,7 +54,7 @@ PROMPT='%n@%m:%~%# '
 ## ANTIGEN SETUP
 ###################
 # Set up antigen.
-source $HOME/dotfiles/antigen.zsh
+source $HOME/.antigen.zsh
 
 # Load the oh-my-zsh library.
 antigen use oh-my-zsh
@@ -119,7 +119,7 @@ setopt    incappendhistory
 # Don't abort commands if glob-matching fails
 setopt NO_NOMATCH
 
-source ~/dotfiles/.aliases
+source ~/.aliases
 export PATH="/usr/local/sbin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
