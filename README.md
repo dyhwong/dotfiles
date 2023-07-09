@@ -23,9 +23,15 @@ brew install tmux
 brew install fzf
 ```
 
-#### Install Key Bindings
+#### Install Key Bindings for `zsh`
+##### Mac OS
 ```
 $(brew --prefix)/opt/fzf/install
+```
+
+##### Linux
+```
+. /usr/share/doc/fzf/examples/key-bindings.zsh
 ```
 
 ### Install `tldr` and `tree`
