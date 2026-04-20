@@ -45,3 +45,10 @@ echo "DONE"
 echo -n "Setting up git config..."
 git config --global include.path "$PWD/.gitconfig"
 echo "DONE"
+
+echo -n "Setting up Claude Code config..."
+mkdir -p ~/.claude
+claude_md_path=~/.claude/CLAUDE.md
+[ -f $claude_md_path ] && rm $claude_md_path
+ln -s "$PWD/CLAUDE.md" $claude_md_path
+echo "DONE"
