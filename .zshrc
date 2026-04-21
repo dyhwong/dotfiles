@@ -75,6 +75,18 @@ antigen bundle tmux
 antigen apply
 
 ###################
+## GIT COMPLETION
+###################
+# Register `git commit-stats` with zsh's native _git dispatcher and complete
+# both positional args (BRANCH, BASE) as local branch names.
+zstyle ':completion:*:*:git:*' user-commands commit-stats:'per-commit stats vs a base branch'
+_git-commit-stats () {
+    _arguments \
+        ':branch:__git_branch_names' \
+        ':base:__git_branch_names'
+}
+
+###################
 ## VI MODE
 ###################
 # Vi line-editing mode
