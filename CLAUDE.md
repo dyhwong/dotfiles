@@ -19,11 +19,14 @@
 
 Always three sections: `## Changes`, `## Motivation`, `## Testing`.
 
+**Don't hard-wrap lines.** Let the renderer handle line width. Hard-wrapping at ~60–70 chars makes the text look unnaturally left-aligned in GitHub's UI — paragraphs should flow as single long lines.
+
 ### Changes
 
 - At minimum, restate the title as a sentence (with period).
 - Prefer a single sentence. Expand with bullets only when the PR touches multiple files for different reasons or when the title could be misread as simpler than it is.
 - Don't over-document — reviewers can read the diff. Focus on unintuitive or unexpected changes.
+- Target ~60 words. If you're past 100, you're probably restating the diff.
 
 ### Motivation
 
@@ -31,6 +34,7 @@ Always three sections: `## Changes`, `## Motivation`, `## Testing`.
 - Depth is proportional to risk, complexity, and likelihood a reviewer will ask "why?".
 - Simple motivations are fine: "Dead code cleanup", "Unused code".
 - Link predecessor/successor PRs with `#12345` format to chain work narrative.
+- Only cite a PR number if you've verified it's actually related — check the commit log or PR title before pasting. Fabricated references are worse than no references.
 - Reference Jira tickets as `[VRM-7916]` — the automation auto-links. No footnote URL needed.
 - Link Slack threads and docs when they prompted the change.
 - Explain the technical *why*, not just the business *why*.
