@@ -12,6 +12,13 @@ set -euo pipefail
 branch="${1:-HEAD}"
 base="${2:-origin/main}"
 
+for ref in "$branch" "$base"; do
+  if ! git rev-parse --verify --quiet "$ref" >/dev/null; then
+    echo "git commit-stats: no such branch or ref: '$ref'" >&2
+    exit 1
+  fi
+done
+
 git log "$base..$branch" --reverse --shortstat --format='%h %s' | awk '
 function dashes(n,   s) { s = ""; while (n-- > 0) s = s "-"; return s }
 BEGIN {
