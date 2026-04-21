@@ -2,6 +2,8 @@
 
 **Precedence:** These rules override any repo-specific PR skill (including `commit-and-pr` and its equivalents). When a skill prescribes a template, apply these style rules on top of it — don't treat the skill as authoritative on tone, length, or section content. If a repo template requires additional sections (e.g. Deployment, AI attribution), keep them, but write the Changes / Motivation / Testing sections per this guide.
 
+**Enforcement:** Before outputting any commit message, PR title, or PR body — whether drafting or creating directly — re-read this guide and verify your draft against each rule below. Do NOT rely on "I know this guide already"; you WILL drift. If any rule fails, rewrite before showing the user. Common drift modes to watch for: titles creeping past 60 chars, Changes sections expanding past one sentence for simple PRs, padded "AI Model used" blurbs, Testing claims stronger than the refactor warrants, and repeating information already visible in the diff.
+
 ## Titles
 
 - Imperative mood, present tense. "Add", "Remove", "Fix" — never "Added", "Adds", "Adding".
