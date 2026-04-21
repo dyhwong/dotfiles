@@ -22,6 +22,15 @@ ln -s "$PWD/.vimrc" ~/.vimrc
 ln -s "$PWD/.zshrc" ~/.zshrc
 echo "DONE"
 
+echo -n "Symlinking bin scripts to ~/.local/bin..."
+mkdir -p ~/.local/bin
+for script in "$PWD"/bin/*; do
+  target=~/.local/bin/$(basename "$script")
+  [ -e "$target" ] && rm "$target"
+  ln -s "$script" "$target"
+done
+echo "DONE"
+
 source ~/.zshrc
 
 vundle_path=~/.vim/bundle/Vundle.vim

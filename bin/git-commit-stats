@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+# git-commit-stats [BRANCH] [BASE]
+#
+# Show per-commit file/insertion/deletion stats for BRANCH relative to BASE,
+# plus a totals row. Defaults: BRANCH=HEAD, BASE=origin/main.
+#
+# Example: git commit-stats david/my-branch
+#          git commit-stats david/my-branch main
+
+set -euo pipefail
+
+branch="${1:-HEAD}"
+base="${2:-origin/main}"
+
+git log "$base..$branch" --reverse --shortstat --format='%h %s' | awk '
+function dashes(n,   s) { s = ""; while (n-- > 0) s = s "-"; return s }
+BEGIN {
+  fmt_s = "%-12s  %-72s  %6s  %8s  %8s\n"
+  fmt_d = "%-12s  %-72s  %6d  %8d  %8d\n"
+  sep = dashes(12) "  " dashes(72) "  " dashes(6) "  " dashes(8) "  " dashes(8)
+  printf fmt_s, "COMMIT", "SUBJECT", "FILES", "INSERTS", "DELETES"
+  print sep
+}
+/^[a-f0-9]+[[:space:]]/ {
+  if (has_commit) emit()
+  hash = $1
+  $1 = ""; sub(/^[ \t]+/, "")
+  subject = $0
+  files = 0; ins = 0; del = 0
+  has_commit = 1
+  next
+}
+/files? changed/ {
+  for (i = 1; i <= NF; i++) {
+    if ($i ~ /^[0-9]+$/) {
+      if ($(i+1) ~ /^files?$/) files = $i + 0
+      else if ($(i+1) ~ /^insertions?/) ins = $i + 0
+      else if ($(i+1) ~ /^deletions?/) del = $i + 0
+    }
+  }
+}
+END {
+  if (has_commit) emit()
+  if (c > 0) {
+    print sep
+    printf fmt_d, "", ("TOTAL (" c " commits)"), tf, ti, td
+  }
+}
+function emit(   subj) {
+  subj = subject
+  if (length(subj) > 72) subj = substr(subj, 1, 69) "..."
+  printf fmt_d, hash, subj, files, ins, del
+  tf += files; ti += ins; td += del; c++
+}'
