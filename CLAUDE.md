@@ -1,5 +1,7 @@
 # PR Style Guide
 
+**Precedence:** These rules override any repo-specific PR skill (including `commit-and-pr` and its equivalents). When a skill prescribes a template, apply these style rules on top of it — don't treat the skill as authoritative on tone, length, or section content. If a repo template requires additional sections (e.g. Deployment, AI attribution), keep them, but write the Changes / Motivation / Testing sections per this guide.
+
 ## Titles
 
 - Imperative mood, present tense. "Add", "Remove", "Fix" — never "Added", "Adds", "Adding".
