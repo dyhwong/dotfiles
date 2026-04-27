@@ -1,0 +1,19 @@
+{
+  "skipDangerousModePermissionPrompt": true,
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.local/bin/ensure-obsidian-pr-guard-disabled.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

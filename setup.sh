@@ -60,6 +60,9 @@ mkdir -p ~/.claude
 claude_md_path=~/.claude/CLAUDE.md
 [ -f $claude_md_path ] && rm $claude_md_path
 ln -s "$PWD/CLAUDE.md" $claude_md_path
+claude_settings_path=~/.claude/settings.json
+[ -e $claude_settings_path ] && rm $claude_settings_path
+ln -s "$PWD/claude-settings.json" $claude_settings_path
 echo "DONE"
 
 echo -n "Installing git-absorb..."
