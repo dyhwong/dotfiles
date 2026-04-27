@@ -61,3 +61,21 @@ claude_md_path=~/.claude/CLAUDE.md
 [ -f $claude_md_path ] && rm $claude_md_path
 ln -s "$PWD/CLAUDE.md" $claude_md_path
 echo "DONE"
+
+echo -n "Installing git-absorb..."
+absorb_version="0.9.0"
+if command -v git-absorb >/dev/null 2>&1; then
+  echo "ALREADY INSTALLED"
+elif [ "$(uname)" = "Darwin" ]; then
+  brew install git-absorb && echo "DONE" || echo "FAILED"
+else
+  target="x86_64-unknown-linux-musl"
+  tmp=$(mktemp -d)
+  tarball="git-absorb-${absorb_version}-${target}.tar.gz"
+  curl -fsSL -o "$tmp/$tarball" "https://github.com/tummychow/git-absorb/releases/download/${absorb_version}/${tarball}" \
+    && tar -xzf "$tmp/$tarball" -C "$tmp" \
+    && mv "$tmp/git-absorb-${absorb_version}-${target}/git-absorb" ~/.local/bin/git-absorb \
+    && echo "DONE" \
+    || echo "FAILED"
+  rm -rf "$tmp"
+fi
