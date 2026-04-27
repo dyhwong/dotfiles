@@ -1,6 +1,6 @@
 # PR Style Guide
 
-**Precedence:** These rules override any repo-specific PR skill (including `commit-and-pr` and its equivalents). When a skill prescribes a template, apply these style rules on top of it — don't treat the skill as authoritative on tone, length, or section content. If a repo template requires additional sections (e.g. Deployment, AI attribution), keep them, but write the Changes / Motivation / Testing sections per this guide.
+**Precedence:** These rules override any repo-specific PR skill (including `commit-and-pr` and its equivalents). When a skill prescribes a template, apply these style rules on top of it — don't treat the skill as authoritative on tone, length, or section content.
 
 **Enforcement:** Before outputting any commit message, PR title, or PR body — whether drafting or creating directly — re-read this guide and verify your draft against each rule below. Do NOT rely on "I know this guide already"; you WILL drift. If any rule fails, rewrite before showing the user. Common drift modes to watch for: titles creeping past 60 chars, Changes sections expanding past one sentence for simple PRs, padded "AI Model used" blurbs, Testing claims stronger than the refactor warrants, and repeating information already visible in the diff.
 
@@ -20,6 +20,16 @@
 Always three sections: `## Changes`, `## Motivation`, `## Testing`.
 
 **Don't hard-wrap lines.** Let the renderer handle line width. Hard-wrapping at ~60–70 chars makes the text look unnaturally left-aligned in GitHub's UI — paragraphs should flow as single long lines.
+
+### Extra template sections
+
+Skip `## Deployment`, `## AI Model used and major prompts used`, and `## Expectations for Reviews and Reviewers` by default. Only include them when the PR genuinely warrants them — set a high bar:
+
+- **Deployment**: only when landing has non-obvious risk a reviewer can't see in the diff — cross-service coordination, irreversible migration, manual staged rollout, ordering dependency on another PR. Feature flags alone or "rollback is `git revert`" don't qualify.
+- **AI Model used**: only when AI generated the substantive code under review. Drafting the PR description or making small targeted edits doesn't qualify.
+- **Expectations for Reviews**: only when there are concrete reviewer-specific instructions ("GRC reviewer focus on X, Core Platform on Y"). Footer boilerplate doesn't qualify.
+
+If a repo hook blocks PR creation because a section is missing, surface the block to the user — don't quietly fill in placeholder content to satisfy it.
 
 ### Changes
 
