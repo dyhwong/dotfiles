@@ -21,6 +21,8 @@ Always three sections: `## Changes`, `## Motivation`, `## Testing`.
 
 **Don't hard-wrap lines.** Let the renderer handle line width. Hard-wrapping at ~60–70 chars makes the text look unnaturally left-aligned in GitHub's UI — paragraphs should flow as single long lines.
 
+**But DO break paragraphs by blank lines.** Within a section, distinct beats each get their own paragraph. Two short paragraphs read faster than one long one — even when the total word count is the same. A three-sentence run that covers two unrelated points is a sign to split.
+
 ### Extra template sections
 
 Skip `## Deployment`, `## AI Model used and major prompts used`, and `## Expectations for Reviews and Reviewers` by default. Only include them when the PR genuinely warrants them — set a high bar:
@@ -48,6 +50,7 @@ If a repo hook blocks PR creation because a section is missing, surface the bloc
 - Reference Jira tickets as `[VRM-7916]` — the automation auto-links. No footnote URL needed.
 - Link Slack threads and docs when they prompted the change.
 - Explain the technical *why*, not just the business *why*.
+- Describe the current state and why the change is correct — not the investigative path that led there. "We considered X first, then Y" or "vestigial scaffolding from an earlier iteration" rarely helps a reviewer who only needs to evaluate the diff in front of them.
 
 ### Testing
 
