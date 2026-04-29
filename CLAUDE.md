@@ -55,11 +55,26 @@ If a repo hook blocks PR creation because a section is missing, surface the bloc
 ### Testing
 
 - Brief and evidence-based. Match the weight of the change:
-  - Type-only/mechanical: "`turbo typecheck` succeeds"
+  - Type-only/mechanical: typecheck command succeeds
   - Refactors: "Existing tests pass" or "No behavioral changes"
   - Bug fixes: Describe before/after or reproduction
   - UI changes: Include a screenshot
   - Flaky test fixes: Show run count evidence
+- Include the actual command when it would help a reviewer reproduce the run — `just unit-test path/to/file.test.ts`, `turbo typecheck -F @vanta/foo`, the Playwright invocation, etc. Put each command in its own fenced code block (no language tag) so it's copy-pasteable, with a short prose lead-in for context. Skip the command when it's obvious or non-reproducible (manual UI walkthrough, screenshot-only verification).
+
+  Example:
+
+      Typecheck:
+
+      ```
+      turbo typecheck -F @vanta/web
+      ```
+
+      Integration test (3/3 pass):
+
+      ```
+      just unit-test apps/web/src/graphql/integration-tests/helpers/monitorFilterHelpers.test.ts
+      ```
 
 ## Screenshots
 
