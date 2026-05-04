@@ -5,7 +5,6 @@ Repo layout and conventions are documented in README.md — read that first.
 ## What to avoid
 
 - Don't hardcode absolute paths — use `$HOME`, `$PWD`, or `~`.
-- Don't add machine-specific config — this repo is shared across machines.
 - Don't commit secrets or tokens.
 - `CLAUDE.md` is symlinked to `~/.claude/CLAUDE.md` and affects global Claude behavior — don't add project-specific content there.
 

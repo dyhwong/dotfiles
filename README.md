@@ -93,3 +93,4 @@ Drop the script in `bin/`. `setup.sh` auto-symlinks everything in `bin/` to `~/.
 - Steps are idempotent: guard with existence checks before symlinking or installing.
 - Symlink steps remove the old target before creating the new one.
 - Cross-platform: Mac uses `brew`, Linux uses package managers or direct downloads from GitHub releases.
+- Machine-specific logic is fine — check for a path or condition before applying it.
