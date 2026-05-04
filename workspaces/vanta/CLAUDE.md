@@ -72,3 +72,8 @@ If a repo hook blocks PR creation because a section is missing, surface the bloc
 ## AI Attribution
 
 - Only include "Generated with Claude Code" / `Co-Authored-By` when AI wrote most of the code. Not when AI just drafted the PR description.
+
+## Code Reviewer
+
+When asked to review a branch, commit, or staged changes, load and follow
+@~/agents/agents/code-reviewer/local-review.md.
