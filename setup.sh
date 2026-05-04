@@ -65,6 +65,8 @@ claude_settings_path=~/.claude/settings.json
 ln -s "$PWD/claude-settings.json" $claude_settings_path
 echo "DONE"
 
+[ -d "/workspaces/obsidian" ] && "$PWD/workspaces/vanta/setup.sh"
+
 echo -n "Installing git-absorb..."
 absorb_version="0.9.0"
 if command -v git-absorb >/dev/null 2>&1; then

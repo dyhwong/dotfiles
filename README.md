@@ -56,6 +56,7 @@ source ~/.zshrc
 | `.tmux.conf` | tmux config |
 | `CLAUDE.md` | Global Claude Code instructions — symlinked to `~/.claude/CLAUDE.md` |
 | `claude-settings.json` | Claude Code settings — symlinked to `~/.claude/settings.json` |
+| `workspaces/vanta/` | Vanta-specific Claude config; `setup.sh` links it into `/workspaces/obsidian/` when present |
 
 ## Adding a new tool
 
