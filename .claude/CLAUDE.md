@@ -12,7 +12,7 @@ Repo layout and conventions are documented in README.md — read that first.
 
 The global `CLAUDE.md` covers the full PR style guide. Dotfiles-specific patterns:
 
-- Most commits touch one file for one reason — keep them that way.
+- Most commits touch one file for one reason — keep them that way. If two files change together and reverting one would leave the repo inconsistent, they belong in one commit.
 - Name the target explicitly: "Add git-absorb installation to setup.sh", not "Update setup.sh".
 - No PR body needed for straightforward additions or config tweaks — the title is enough.
 
