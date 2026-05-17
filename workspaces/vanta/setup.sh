@@ -15,5 +15,6 @@ else
 fi
 
 echo -n "Setting up Vanta Claude local config..."
-ln -sf "$SCRIPT_DIR/CLAUDE.md" /workspaces/obsidian/CLAUDE.local.md
+ln -sf "$SCRIPT_DIR/AGENTS.md" /workspaces/obsidian/AGENTS.local.md
+echo "@AGENTS.local.md" > /workspaces/obsidian/CLAUDE.local.md
 echo "DONE"
