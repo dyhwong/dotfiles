@@ -53,15 +53,8 @@ If a repo hook blocks PR creation because a section is missing, surface the bloc
 
   Example:
 
-      Typecheck:
-
       ```
       turbo typecheck -F @vanta/web
-      ```
-
-      Integration test (3/3 pass):
-
-      ```
       just unit-test apps/web/src/graphql/integration-tests/helpers/monitorFilterHelpers.test.ts
       ```
 
@@ -71,7 +64,7 @@ If a repo hook blocks PR creation because a section is missing, surface the bloc
 
 ## AI Attribution
 
-- Only include "Generated with Claude Code" / `Co-Authored-By` when AI wrote most of the code. Not when AI just drafted the PR description.
+- Only include `Generated with` / `Co-Authored-By` when AI wrote most of the code. Not when AI just drafted the PR description.
 
 ## Code Reviewer
 
