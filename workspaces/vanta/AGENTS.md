@@ -50,6 +50,7 @@ If a repo hook blocks PR creation because a section is missing, surface the bloc
   - UI changes: Include a screenshot
   - Flaky test fixes: Show run count evidence
 - Include the actual command when it would help a reviewer reproduce the run — `just unit-test path/to/file.test.ts`, `turbo typecheck -F @vanta/foo`, the Playwright invocation, etc. Put each command in its own fenced code block (no language tag) so it's copy-pasteable, with a short prose lead-in for context. Skip the command when it's obvious or non-reproducible (manual UI walkthrough, screenshot-only verification).
+- Omit routine environment sync commands like `just post-pull` from Testing. They are assumed setup, not validation evidence. Only mention them when the PR specifically changes setup behavior or when the setup command's output is directly relevant to the change.
 
   Example:
 
