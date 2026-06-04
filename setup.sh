@@ -66,6 +66,7 @@ ln -s "$PWD/claude-settings.json" $claude_settings_path
 echo "DONE"
 
 [ -d "/workspaces/obsidian" ] && "$PWD/workspaces/vanta/setup.sh"
+ln -sf "$PWD/workspaces/vanta/venonat.py" ~/.local/bin/venonat
 
 echo -n "Installing git-absorb..."
 absorb_version="0.9.0"
