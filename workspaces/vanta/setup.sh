@@ -18,3 +18,9 @@ echo -n "Setting up Vanta Claude local config..."
 ln -sf "$SCRIPT_DIR/AGENTS.md" /workspaces/obsidian/AGENTS.local.md
 echo "@AGENTS.local.md" > /workspaces/obsidian/CLAUDE.local.md
 echo "DONE"
+
+echo -n "Symlinking ideas skill..."
+mkdir -p ~/.claude/skills ~/.agents/skills
+ln -sfn ~/agents/skills/ideas ~/.claude/skills/ideas
+ln -sfn ~/agents/skills/ideas ~/.agents/skills/ideas
+echo "DONE"
