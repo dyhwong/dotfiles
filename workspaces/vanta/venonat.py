@@ -20,9 +20,12 @@ INACTIVITY_TIMEOUT = os.environ.get("ONA_TUI_INACTIVITY_TIMEOUT", "3h")
 CURSOR_EDITOR = os.environ.get("ONA_TUI_CURSOR_EDITOR", DEFAULT_CURSOR_EDITOR_ID)
 VSCODE_EDITOR = os.environ.get("ONA_TUI_VSCODE_EDITOR", DEFAULT_VSCODE_EDITOR_ID)
 ENV_LIMIT = os.environ.get("ONA_TUI_LIMIT", "100")
+SCP_USER = os.environ.get("ONA_TUI_SSH_USER", "gitpod_devcontainer")
+SCP_HOST_SUFFIX = os.environ.get("ONA_TUI_SSH_HOST_SUFFIX", ".ona.environment")
+SCP_DEFAULT_REMOTE = os.environ.get("ONA_TUI_SCP_REMOTE", "/workspaces/obsidian")
 
 FOOTER = (
-    "ona deck  ::  [n] new  [s] start  [x] stop  [enter] ssh  [o] open  "
+    "ona deck  ::  [n] new  [s] start  [x] stop  [enter] ssh  [o] open  [c] scp  "
     "[r] refresh  [/] find  [?] help  [q] bye"
 )
 
@@ -96,6 +99,8 @@ class OnaTui:
             self.run_for_selected(["ona", "environment", "ssh", "{id}", "--start"], refresh=True)
         elif key == ord("o"):
             self.prompt_open_editor()
+        elif key == ord("c"):
+            self.prompt_scp()
 
     def prompt_open_editor(self):
         if not self.current_environment():
@@ -117,6 +122,61 @@ class OnaTui:
             ["ona", "environment", "open", "{id}", "--editor", editor, "--start"],
             refresh=False,
         )
+
+    def prompt_scp(self):
+        env = self.current_environment()
+        if not env:
+            self.message = "No environment selected."
+            return
+
+        if not shutil.which("scp"):
+            self.error = "scp not found on PATH."
+            return
+
+        self.message = "scp...  [u] upload local->remote  [d] download remote->local  [esc] cancel"
+        self.draw()
+
+        second = self.screen.getch()
+        if second in (ord("u"), ord("U")):
+            self.scp_transfer(env, upload=True)
+        elif second in (ord("d"), ord("D")):
+            self.scp_transfer(env, upload=False)
+        else:
+            self.message = ""
+
+    def scp_prompt(self, prompt_func, label, default="", noun=None):
+        """Prompt for a path. Returns the resolved value, or None to abort the
+        transfer (Esc was pressed, or a required path — one with a `noun` and no
+        default — was left blank)."""
+        value = prompt_func(label, default)
+        if value is None:
+            return None
+        value = value.strip() or default
+        if not value and noun:
+            self.message = f"scp cancelled: no {noun} path."
+        return value or None
+
+    def scp_transfer(self, env, upload):
+        host = f"{SCP_USER}@{env['id']}{SCP_HOST_SUFFIX}"
+
+        if upload:
+            local = self.scp_prompt(self.prompt_path, "Local path (source)", noun="local")
+            if local is None:
+                return
+            remote = self.scp_prompt(self.prompt, "Remote path (dest)", SCP_DEFAULT_REMOTE)
+            if remote is None:
+                return
+            source, dest = os.path.expanduser(local), f"{host}:{remote}"
+        else:
+            remote = self.scp_prompt(self.prompt, "Remote path (source)", noun="remote")
+            if remote is None:
+                return
+            local = self.scp_prompt(self.prompt_path, "Local path (dest)", ".")
+            if local is None:
+                return
+            source, dest = f"{host}:{remote}", os.path.expanduser(local)
+
+        self.run_command(["scp", "-r", source, dest])
 
     def move_selection(self, delta):
         if not self.filtered:
@@ -389,6 +449,61 @@ class OnaTui:
         value = raw.decode(errors="replace")
         return value if value else default
 
+    def prompt_path(self, label, default=""):
+        height, width = self.screen.getmaxyx()
+        y = height - 3
+        prompt = f"{label} [{default}]: " if default else f"{label}: "
+        buf = ""
+
+        self.set_cursor(1)
+        try:
+            while True:
+                self.addstr(y, 0, " " * (width - 1))
+                self.addstr(y, 2, prompt, curses.A_BOLD)
+                self.addstr(y, 2 + len(prompt), buf)
+                self.screen.move(y, min(width - 1, 2 + len(prompt) + len(buf)))
+                self.screen.refresh()
+
+                key = self.screen.getch()
+                if key == 27:
+                    return None
+                if key in (curses.KEY_ENTER, 10, 13):
+                    value = buf.strip()
+                    return value if value else default
+                if key in (curses.KEY_BACKSPACE, 127, 8):
+                    buf = buf[:-1]
+                elif key == 9:
+                    buf = self.complete_local_path(buf, y - 1, width)
+                elif 32 <= key < 127:
+                    buf += chr(key)
+        finally:
+            self.set_cursor(0)
+
+    def complete_local_path(self, buf, hint_y, width):
+        self.addstr(hint_y, 0, " " * (width - 1))
+        directory, sep, prefix = buf.rpartition("/")
+        listing_dir = os.path.expanduser(directory) if sep else "."
+
+        try:
+            entries = sorted(os.listdir(listing_dir or "."))
+        except OSError:
+            self.addstr(hint_y, 2, "(can't read directory)", curses.A_DIM)
+            return buf
+
+        matches = [e for e in entries if e.startswith(prefix)]
+        if not matches:
+            self.addstr(hint_y, 2, "(no match)", curses.A_DIM)
+            return buf
+
+        if len(matches) == 1:
+            new_buf = buf + matches[0][len(prefix):]
+            if os.path.isdir(os.path.join(listing_dir or ".", matches[0])) and not new_buf.endswith("/"):
+                new_buf += "/"
+            return new_buf
+
+        self.addstr(hint_y, 2, "  ".join(matches)[:width - 4], curses.A_DIM)
+        return buf + os.path.commonprefix(matches)[len(prefix):]
+
     def confirm(self, question):
         height, width = self.screen.getmaxyx()
         self.addstr(height - 3, 0, " " * width)
@@ -407,9 +522,14 @@ class OnaTui:
             "Enter  SSH into selected environment",
             "o c    open selected environment in Cursor",
             "o v    open selected environment in VS Code",
+            "c u    upload a local file/dir to the selected environment",
+            "c d    download a file/dir from the selected environment",
+            "       (Tab completes local paths; remote paths are free-text)",
             "r      refresh the environment list",
             "/      filter by name, id, phase, repo, or branch",
             "q      quit",
+            "",
+            "scp uses native SSH; run 'ona environment ssh-config' once first.",
             "",
             "Press any key to return.",
         ]
@@ -499,6 +619,9 @@ Environment overrides:
   ONA_TUI_INACTIVITY_TIMEOUT     Inactivity timeout for new environments. Default: 3h.
   ONA_TUI_CURSOR_EDITOR          Editor ID or name for Cursor. Default: Cursor editor ID.
   ONA_TUI_LIMIT                  Number of environments to list. Default: 100.
+  ONA_TUI_SSH_USER               SSH user for scp. Default: gitpod_devcontainer.
+  ONA_TUI_SSH_HOST_SUFFIX        Native SSH host suffix for scp. Default: .ona.environment.
+  ONA_TUI_SCP_REMOTE             Default remote path for uploads. Default: /workspaces/obsidian.
 """)
 
 
