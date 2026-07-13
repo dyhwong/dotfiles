@@ -21,7 +21,7 @@ CURSOR_EDITOR = os.environ.get("ONA_TUI_CURSOR_EDITOR", DEFAULT_CURSOR_EDITOR_ID
 VSCODE_EDITOR = os.environ.get("ONA_TUI_VSCODE_EDITOR", DEFAULT_VSCODE_EDITOR_ID)
 ENV_LIMIT = os.environ.get("ONA_TUI_LIMIT", "100")
 SCP_USER = os.environ.get("ONA_TUI_SSH_USER", "gitpod_devcontainer")
-SCP_HOST_SUFFIX = os.environ.get("ONA_TUI_SSH_HOST_SUFFIX", ".ona.environment")
+SCP_HOST_SUFFIX = os.environ.get("ONA_TUI_SSH_HOST_SUFFIX", ".gitpod.remote")
 SCP_DEFAULT_REMOTE = os.environ.get("ONA_TUI_SCP_REMOTE", "/workspaces/obsidian")
 
 FOOTER = (
@@ -620,7 +620,7 @@ Environment overrides:
   ONA_TUI_CURSOR_EDITOR          Editor ID or name for Cursor. Default: Cursor editor ID.
   ONA_TUI_LIMIT                  Number of environments to list. Default: 100.
   ONA_TUI_SSH_USER               SSH user for scp. Default: gitpod_devcontainer.
-  ONA_TUI_SSH_HOST_SUFFIX        Native SSH host suffix for scp. Default: .ona.environment.
+  ONA_TUI_SSH_HOST_SUFFIX        Native SSH host suffix for scp. Default: .gitpod.remote.
   ONA_TUI_SCP_REMOTE             Default remote path for uploads. Default: /workspaces/obsidian.
 """)
 
