@@ -65,6 +65,12 @@ claude_settings_path=~/.claude/settings.json
 ln -s "$PWD/claude-settings.json" $claude_settings_path
 echo "DONE"
 
+echo -n "Setting up Codex instructions..."
+mkdir -p ~/.codex
+codex_agents_path=~/.codex/AGENTS.md
+ln -sfn "$PWD/AGENTS.md" "$codex_agents_path"
+echo "DONE"
+
 [ -d "/workspaces/obsidian" ] && "$PWD/workspaces/vanta/setup.sh"
 ln -sf "$PWD/workspaces/vanta/venonat.py" ~/.local/bin/venonat
 

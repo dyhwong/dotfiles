@@ -54,6 +54,7 @@ source ~/.zshrc
 | `.gitconfig` | Git config (included globally by `setup.sh`) |
 | `.vimrc` | Vim config (plugins via Vundle) |
 | `.tmux.conf` | tmux config |
+| `AGENTS.md` | Personal Codex instructions — symlinked to `~/.codex/AGENTS.md` |
 | `CLAUDE.md` | Global Claude Code instructions — symlinked to `~/.claude/CLAUDE.md` |
 | `claude-settings.json` | Claude Code settings — symlinked to `~/.claude/settings.json` |
 | `workspaces/vanta/` | Vanta-specific Claude config; `setup.sh` links it into `/workspaces/obsidian/` when present |
@@ -85,6 +86,7 @@ Drop the script in `bin/`. `setup.sh` auto-symlinks everything in `bin/` to `~/.
 - Git aliases or config → `.gitconfig`
 - Editor settings → `.vimrc`
 - Terminal multiplexer settings → `.tmux.conf`
+- Codex behavior → `AGENTS.md` (symlinked globally)
 - Claude Code behavior → `CLAUDE.md` (symlinked globally — change carefully)
 - Claude Code hooks, permissions, plugins → `claude-settings.json`
 
